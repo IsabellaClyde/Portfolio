@@ -80,6 +80,8 @@ loader.load(
     function (gltf) {
         console.log('GLTF Loaded:', gltf);
         avatar = gltf.scene;
+        avatar.position.x = 2.5;
+        avatar.position.y= -2;
 
         // Traverse the avatar's nodes
         avatar.traverse((node) => {
