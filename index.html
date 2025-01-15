@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Portfolio</title>
+
+<!-- CSS code -->
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #ffffff;
+    }
+
+    /* Header and Navigation */
+    header {
+        background: #333;
+        color: #fff;
+        padding: 10px 20px;
+        text-align: center;
+    }
+
+    header nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+    }
+
+    header nav ul li {
+        margin: 0 10px;
+    }
+
+    header nav ul li a {
+        color: #ffffff;
+        text-decoration: none;
+        padding: 5px 10px;
+        transition: color 0.3s;
+    }
+
+    header nav ul li a:hover {
+        color: #f0a500;
+    }
+
+    /* Hero Section */
+    
+    #hero {
+        background: #fff;
+        color: #fff;
+        text-align: left;
+        padding: 200px 20px;
+        padding-bottom: 500px;
+        height: 100vh;
+    }
+
+    #hero .btn {
+        background: #de27b9;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        text-decoration: none;
+        margin-top: 10px;
+        display: inline-block;
+        transition: background 0.3s;
+    }
+
+    #hero .btn:hover {
+        background: #444;
+    }
+
+    /* ***** SECTIONS ***** */
+    
+    section {
+        /*padding: 60px 20px;*/
+        text-align: center;
+    }
+
+    #about p {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    /* **** LOADING SCREEN **** */
+    #loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999; /* Ensure it appears above everything */
+    }
+    
+    .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #ccc; /* Light grey */
+        border-top: 5px solid #3498db; /* Blue */
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* ***** INTRO ***** */
+    .intro a {
+        margin-left: 10%;
+        margin-right: 50%;
+        color:#de27b9;
+    }
+    .intro h1{
+        margin-left: 10%;
+        font-size: 10em;
+        color:#de27b9;
+        font-family: "sour gummy", serif;
+        font-weight: 400;
+        font-style: bold;
+    }
+    .intro h2{
+        margin-left: 10%;
+        font-size: xxx-large;
+        color:#de27b9;
+        font-family: "Archivo Black", serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+    .intro p{
+        margin-left: 10%;
+        margin-right: 50%;
+        font-size: x-large;
+        color:#de27b9;;
+    }
+
+    /* **** PROJECT GRID **** */
+    /* Project Grid */
+.project {
+    height: 100vh;
+    margin-bottom: 20px; /* Add spacing between sections */
+
+}
+/* Button Container */
+.project-buttons {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 100px; /* Space between the buttons */
+    margin-bottom: 150px; /* Space below the buttons */
+}
+
+/* Text Buttons */
+.filter-btn {
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+    color: #25a8e0; /* Set text color */
+    font-size: 2em; /* Adjust font size */
+    font-family: "Archivo Black", serif;
+    font-weight: 400;
+    font-style: normal;
+    cursor: pointer; /* Show pointer cursor on hover */
+    position: relative; /* For custom underline */
+}
+
+/* Custom Underline on Hover */
+.filter-btn::after {
+    content: ''; /* Empty content for the underline */
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Adjust distance of underline from text */
+    width: 0;
+    height: 2px; /* Thickness of the underline */
+    background-color: #de27b9; /* Underline color */
+    transition: width 0.3s ease; /* Smooth underline effect */
+}
+
+/* Hover Effect */
+.filter-btn:hover::after {
+    width: 100%; /* Extend the underline on hover */
+}
+
+/* Active Button */
+.filter-btn.active {
+    color: #de27b9; /* Highlight the active button text */
+}
+
+.filter-btn.active::after {
+    width: 100%; /* Keep underline visible for the active button */
+}
+
+
+
+.project-grid {
+    display: flex;
+    flex-direction: column; /* Aligns items horizontally */
+    gap: 20px;
+    padding-left: 10px;
+}
+
+.project-item {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Two columns: one for the image and one for text */
+    gap: 20px;
+    display: none; /* Default: hidden */
+    /*padding-left: 10px;*/
+}
+
+.project-item.active {
+    display: flex; /* Show active items */
+}
+
+.project-image img {
+    max-width: 100%; /* Ensures the image scales within the column */
+    height: auto;    /* Maintains aspect ratio */
+    object-fit: cover;         /* Crop the image to fill the square area */
+    aspect-ratio: 1 / 1;       /* Force a 1:1 aspect ratio */
+    
+}
+
+/* Prevent cropping for specific images */
+.project-image.no-crop img {
+    object-fit: contain; /* Ensures the entire image is visible */
+    width: 100%; /* Adjust width as needed */
+    height: auto; /* Maintains the original aspect ratio */
+    background-color: #ffffff; /* Optional: Adds a background color for empty space */
+}
+
+.project-video video {
+    width: 100%; /* Make the video fill its container */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure the video covers the area without distortion */
+    border-radius: 5px; /* Optional: rounded corners */
+}
+
+
+.project-text {
+    margin-top: 30px;
+    margin-left: 40px;
+    margin-right: 100px;
+    text-align: left;
+}
+
+.project-item h3 {
+    color:#de27b9;
+    font-size: 5em; 
+    font-family: "Roboto", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.project-item p {
+    color: #666;
+    /*padding-left: 700px;*/
+
+    
+}
+
+
+
+    /* Skills List */
+    .skills-list {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .skills-list li {
+        background: #333;
+        color: #fff;
+        padding: 8px 15px;
+        margin: 5px;
+        border-radius: 5px;
+    }
+
+    /* Contact Form */
+    form {
+        max-width: 500px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    form label {
+        text-align: left;
+        margin-top: 10px;
+    }
+
+    form input,
+    form textarea {
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    form button {
+        background: #f0a500;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        margin-top: 10px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    form button:hover {
+        background: #d48c00;
+    }
+
+    /* Footer */
+    footer {
+        background: #ffffff;
+        color: #000000;
+        text-align: center;
+        padding: 20px;
+        font-size: 0.9em;
+    }
+
+
+    #container3D {
+        position: fixed;
+        inset: 0;
+        /*background-color: red; */
+        z-index: 100;
+        pointer-events: none;
+    }
+
+
+    </style>
+
+
+<!-- ***** HTML ***** -->
+
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Vinyl&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+<body>
+
+   <!-- <header>
+        <nav>
+            <h1>Isabella Clyde</h1>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+-->
+    <!--LOADING SCREEN-->
+    <div id="loading-screen">
+        <div class="spinner"></div>
+    </div>
+
+    <!--Intro-->
+    <div class="section" id="hero">
+        <element class="intro">
+            <h1>Hello,</h1>
+            <h2>My name is Bella</h2>
+            <p>I'm an electrical engineering student passionate about sustainable and innovative solutions</p>
+            <a href="#projects" class="btn">View My Projects</a>
+        </div>
+        
+    </div>
+
+<!--Experience-->
+<div class= "section" id="projects">
+    <!-- Buttons for Filtering -->
+    <div class="project-buttons">
+        <button class="filter-btn" data-filter="projects">Projects</button>
+        <button class="filter-btn" data-filter="work">Work</button>
+        <button class="filter-btn" data-filter="life">Life</button>
+    </div>
+
+    <!-- Project Grid -->
+    <div class="project-grid">
+        <!-- Projects -->
+        <div class="project-item projects">
+            <div class="project-image">
+                <img src="images/trailerme.png" alt="Hydroponic Trailer Project Image">
+            </div>
+            <div class="project-text">
+                <h3>Hydroponic Trailer</h3>
+                <p>
+                I led the Agroponics team at UBC for three years, an engineering design team project focused on developing autonomous hydroponic systems through multidisciplinary collaboration. The project integrates IoT for automation, structural design for optimized growth environments, and experimental research on staple crop cultivation. Our goal was to enhance agricultural efficiency by reducing resource use and improving crop production in a controlled and sustainable setting.
+                <br><br>
+                During my tenure, I achieved three pivotal milestones:
+                <br><b>Expanded Resources:</b> Secured a trailer to create a controlled environment, providing increased space and resources. Gained lab access and equipment to analyze the nutritional quality of crops and correlate results with growing conditions, moving beyond qualitative observations.
+                <br><b>Team Growth:</b> Expanded the team and resources to support long-term success.
+                <br><b>Reorganized Structure:</b> Restructured the team into three specialized subteams, each with a lead, to address neglected areas and improve workload distribution.
+                <br>This leadership role allowed me to integrate engineering innovation, sustainability, and team management to advance agricultural technology. I have loved my experience with the team and am incredibly grateful for the experience. View our website here: https://ubcagroponics.com/
+                    
+                </p>
+            </div>
+        </div>
+
+        <div class="project-item projects">
+            <div class="project-image">
+                <img src="images/hamming.png" alt="Verilog Filter Project Image">
+            </div>
+            <div class="project-text">
+                <h3>Verilog Filter</h3>
+                <p>
+                    Using the power of Verilog, I collaborated with two others to build a filter that transforms raw audio signals into pristine sound waves by eliminating unwanted noise and preserving the essence of your input signal. My primary focus throughout the project was the design of the encoder, decoder, and buffering system.
+                    <br>
+                    <br><b>How It Works:</b>
+                    <br> <b>Finite Impulse Response (FIR) Design:</b> Implemented using modular Verilog blocks, this filter precisely attenuates unwanted frequencies while preserving desired ones.
+                    <br> <b>Real-Time Processing:</b> Optimized for lightning-fast signal handling, perfect for applications demanding low latency and high fidelity.
+                    <br> <b>Scalable Architecture:</b> Designed with modularity in mind, the filter can adapt to various audio frequencies and use cases.
+                    <br>
+                    <br>This project showcases hardware-level signal processing, bridging the gap between theory and practical implementation.
+                    
+                </p>
+            </div>
+        </div>
+
+        <div class="project-item projects">
+            <div class="project-image">
+                <img src="images/magnetic.jpg" alt="Magnetic Field Robot Project Image">
+            </div>
+            <div class="project-text">
+                <h3>Magnetic Field Robot</h3>
+                <p>
+                The Magnetic Field Robot combines engineering precision with creative problem-solving to navigate using magnetic fields. With two operational modes—Track Mode to follow the transmitter and Command Mode to execute directional commands.
+                <br>
+                <br><b>Technical Highlights:</b>
+                <br><b>Transmitter:</b> Powered by an EFM8LB1 microcontroller, H-bridge circuit, and RLC components to emit precise magnetic fields at 15,420 Hz.
+                <br><b>Receiver:</b> Equipped with an ATmega328P microcontroller, inductors, amplifiers, and peak detectors to decode field signals into commands.
+                <br><b>Hardware:</b> Features servo motors driven by H-bridge circuits, collision avoidance sensors, and a custom battery monitor for reliable operation.
+                <br><b>Software:</b> Written in C and Assembly, leveraging ADC for signal processing, frequency decoding, and real-time motor control.
+  
+                </p>
+            </div>
+        </div>
+
+        <div class="project-item projects">
+            <div class="project-image">
+                <img src="images/drone.jpg" alt="Drone Project Image">
+            </div>
+            <div class="project-text">
+                <h3>FPV Drone</h3>
+                <p>
+                The FPV Drone Project marked my first experience in combining software and hardware to create a fully functional system. This drone was designed to deliver an immersive first-person piloting experience by integrating technologies for smooth flight control and real-time video streaming.
+                I used Betaflight Configurator to configure and fine-tune the flight controller, ensuring precise stabilization and responsive control. Additionally, I leveraged Python to analyze telemetry data and debug the system during development, which helped optimize flight performance and reliability.
+                <br>
+                <br>
+                The hardware featured a video transmitter for real-time FPV streaming, a microcontroller to manage flight dynamics, and a lightweight frame paired with powerful motors and a high-capacity battery to maximize endurance and maneuverability. My contributions focused on developing the flight control system, programming the microcontroller, and integrating the video transmitter for seamless operation.
+                This project was more than just a technical accomplishment—it was an exciting introduction to combining software and hardware in a cohesive system.
+                    
+                </p>
+            </div>
+        </div>
+
+        <div class="project-item projects">
+            <div class="project-image">
+                <img src="images/website.png" alt="Website Project Image">
+            </div>
+            <div class="project-text">
+                <h3>This Website (if you hadn't noticed)</h3>
+                <p>
+                I designed and developed this portfolio website to showcase my projects, skills, and experiences in an engaging and creative way. Built from scratch using HTML, CSS, and JavaScript, it features a 3D animated model of myself, created and animated in Blender, rendered dynamically with Three.js. The site also includes a responsive design and interactive components powered by GSAP animations. This project highlights my ability to combine creativity and technical expertise, offering an immersive and user-friendly experience while refining my skills in web development and 3D rendering. I wanted to find a way to blend both my creativity and technical skills in my portfolio. The website is still being updated and improved. I hope you enjoy it!
+                </p>
+            </div>
+        </div>
+
+        <div class="project-item projects">
+            <div class="project-image">
+                <img src="images/2dGame.png" alt="2D Infinite World Game Project Image">
+            </div>
+            <div class="project-text">
+                <h3>2D Infinite World Game</h3>
+                <p>
+                One of my first coding projects, this 2D infinite world game used Python to create a procedurally generated environment that expands as the player explores. A grid-based system dynamically generated new terrain in real time while removing unused areas for smooth performance. This project introduced me to game development fundamentals, procedural generation, and optimizing code for interactive applications.
+                </p>
+            </div>
+        </div>
+
+        <!-- Work -->
+        <div class="project-item work">
+            <div class="project-image no-crop">
+                <img src="images/riotinto.png" alt="Work Project Image">
+            </div>
+            <div class="project-text">
+                <h3>Automation Intern, 2025</h3>
+                <p>
+                For four months in Labrador City, Newfoundland and Labrador, I worked on automating operations for four main pellet plant mills, focusing on improving efficiency, reliability, and safety. I updated and optimized equipment interlocks to enhance operational safety and minimize downtime, while programming and troubleshooting Programmable Logic Controllers (PLC) and Human-Machine Interfaces (HMI) for seamless automation. Additionally, I designed detailed technical drawings and documentation to support project implementation and maintenance, collaborating with cross-functional teams to integrate automated systems with the existing plant infrastructure.
+                </p>
+            </div>
+        </div>
+
+        <div class="project-item work">
+            <div class="project-image no-crop">
+                <img src="images/copperleaf.png" alt="Work Project Image">
+            </div>
+            <div class="project-text">
+                <h3>Implementation Consultant, 2023</h3>
+                <p>Developed advanced statistical asset risk models for electrical utility clients in C#
+                    Led client workshops to design and configure custom risk models and asset user interfaces
+                    Spearheaded internal testing of innovative predictive analytics models
+                    Designed new sales demonstration assets and models based on industry research
+                    </p>
+            </div>
+        </div>
+
+        <div class="project-item work">
+            <div class="project-image no-crop">
+                <img src="images/beachhead.png" alt="Beachhead Image">
+            </div>
+            <div class="project-text">
+                <h3>Environmental Analyst, 2022</h3>
+                <p>
+                For four months in Toronto, I spearheaded an Environmental Impact Assessment (CDP), detailing the company’s carbon footprint, biodiversity impact, and sustainability improvement plans. I calculated scope 1, 2, and 3 emissions, identifying key areas for improvement and strengths. Collaborating with management, I organized short- and long-term sustainability goals and initiatives to align with the company’s environmental objectives.
+                </p>
+            </div>
+        </div>
+        
+        <div class="project-item work">
+            <div class="project-image no-crop">
+                <img src="images/beachhead.png" alt="Beachhead Image">
+            </div>
+            <div class="project-text">
+                <h3>Graphic Designer, 2016-2022</h3>
+                <p>
+                For four months in Toronto, I spearheaded an Environmental Impact Assessment (CDP), detailing the company’s carbon footprint, biodiversity impact, and sustainability improvement plans. I calculated scope 1, 2, and 3 emissions, identifying key areas for improvement and strengths. Collaborating with management, I organized short- and long-term sustainability goals and initiatives to align with the company’s environmental objectives.
+                </p>
+            </div>
+        </div>
+        
+
+        <!-- Life -->
+        <div class="project-item life">
+            <div class="project-text">
+                <h3>Continuing to Update</h3>
+                <p>Come back another time :)</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!--
+    <div class = "section" id="skills">
+        <h2>Skills</h2>
+        <ul class="skills-list">
+            <li>JavaScript</li>
+            <li>Python</li>
+            <li>HTML & CSS</li>
+        </ul>
+    </div>
+
+    <div class = "section" id="contact">
+        <h2>Contact</h2>
+        <p>I'm always open to connect and discuss potential collaborations!</p>
+        <form>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+-->
+
+    <footer>
+        <p>&copy; 2024 Isabella Clyde. All rights reserved.</p>
+    </footer>
+
+    <!-- ***** JavaScript ***** -->
+
+
+    <!-- Event Listener for Buttons -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const buttons = document.querySelectorAll(".filter-btn");
+            const projectItems = document.querySelectorAll(".project-item");
+        
+            // Function to filter projects
+            function filterProjects(category) {
+                projectItems.forEach(item => {
+                    if (item.classList.contains(category)) {
+                        item.style.display = "grid"; // Show matching items
+                    } else {
+                        item.style.display = "none"; // Hide non-matching items
+                    }
+                });
+        
+                // Update active button styling
+                buttons.forEach(button => {
+                    button.classList.toggle("active", button.getAttribute("data-filter") === category);
+                });
+            }
+        
+            // Set default category to "projects"
+            filterProjects("projects");
+        
+            // Add event listeners to buttons
+            buttons.forEach(button => {
+                button.addEventListener("click", () => {
+                    const category = button.getAttribute("data-filter");
+                    filterProjects(category);
+                });
+            });
+        });        
+    </script>
+
+</body>
+<div id="container3D"></div>
+<script type="module" src="app.js"></script>
+
+</html>
