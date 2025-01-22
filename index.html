@@ -13,6 +13,11 @@
         box-sizing: border-box;
     }
 
+    :root {
+        --main: #de27b9; /* Define a custom property for the color */
+        --second: #25a8e0;
+    }
+
     body {
         font-family: Arial, sans-serif;
         line-height: 1.6;
@@ -61,7 +66,7 @@
     }
 
     #hero .btn {
-        background: #de27b9;
+        background: var(--main);
         color: #fff;
         padding: 10px 20px;
         border: none;
@@ -94,7 +99,7 @@
         left: 0;
         width: 100vw;
         height: 100vh;
-        background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+        background-color: rgba(220, 239, 249, 0.604); /* Semi-transparent black */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -104,8 +109,8 @@
     .spinner {
         width: 50px;
         height: 50px;
-        border: 5px solid #ccc; /* Light grey */
-        border-top: 5px solid #3498db; /* Blue */
+        border: 5px solid #de27b9; /* Light grey */
+        border-top: 5px solid var(--second); /* Blue */
         border-radius: 50%;
         animation: spin 1s linear infinite;
     }
@@ -119,12 +124,12 @@
     .intro a {
         margin-left: 10%;
         margin-right: 50%;
-        color:#de27b9;
+        color:var(--main);
     }
     .intro h1{
         margin-left: 10%;
         font-size: 10em;
-        color:#de27b9;
+        color:var(--main);
         font-family: "sour gummy", serif;
         font-weight: 400;
         font-style: bold;
@@ -132,7 +137,7 @@
     .intro h2{
         margin-left: 10%;
         font-size: xxx-large;
-        color:#de27b9;
+        color: var(--main);
         font-family: "Archivo Black", serif;
         font-weight: 400;
         font-style: normal;
@@ -141,7 +146,7 @@
         margin-left: 10%;
         margin-right: 50%;
         font-size: x-large;
-        color:#de27b9;;
+        color: var(--main);
     }
 
     /* **** PROJECT GRID **** */
@@ -163,7 +168,7 @@
 .filter-btn {
     background: none; /* Remove background */
     border: none; /* Remove border */
-    color: #25a8e0; /* Set text color */
+    color: var(--second); /* Set text color */
     font-size: 2em; /* Adjust font size */
     font-family: "Archivo Black", serif;
     font-weight: 400;
@@ -180,7 +185,7 @@
     bottom: -5px; /* Adjust distance of underline from text */
     width: 0;
     height: 2px; /* Thickness of the underline */
-    background-color: #de27b9; /* Underline color */
+    background-color: var(--main); /* Underline color */
     transition: width 0.3s ease; /* Smooth underline effect */
 }
 
@@ -191,7 +196,7 @@
 
 /* Active Button */
 .filter-btn.active {
-    color: #de27b9; /* Highlight the active button text */
+    color: var(--main); /* Highlight the active button text */
 }
 
 .filter-btn.active::after {
@@ -244,14 +249,14 @@
 
 
 .project-text {
-    margin-top: 30px;
+    margin-top: 0px;
     margin-left: 40px;
     margin-right: 100px;
     text-align: left;
 }
 
 .project-item h3 {
-    color:#de27b9;
+    color: var(--main);
     font-size: 5em; 
     font-family: "Roboto", serif;
     font-weight: 700;
@@ -336,6 +341,11 @@
         pointer-events: none;
     }
 
+    br {
+        line-height: 0.25; /* Adjust spacing between lines */
+        display: block;
+    }
+
 
     </style>
 
@@ -353,18 +363,6 @@
 
 <body>
 
-   <!-- <header>
-        <nav>
-            <h1>Isabella Clyde</h1>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
--->
     <!--LOADING SCREEN-->
     <div id="loading-screen">
         <div class="spinner"></div>
@@ -375,7 +373,7 @@
         <element class="intro">
             <h1>Hello,</h1>
             <h2>My name is Bella</h2>
-            <p>I'm an electrical engineering student passionate about sustainable and innovative solutions. <br> I am still updating this website, both in content and design.</p>
+            <p>I'm an electrical engineering student passionate about sustainable and innovative solutions. <br> <b>I am still updating this website, both in content and design.</b></p>
             <a href="#projects" class="btn">View My Projects</a>
         </div>
         
@@ -401,12 +399,13 @@
                 <h3>Hydroponic Trailer</h3>
                 <p>
                 I led the Agroponics team at UBC for three years, an engineering design team project focused on developing autonomous hydroponic systems through multidisciplinary collaboration. The project integrates IoT for automation, structural design for optimized growth environments, and experimental research on staple crop cultivation. Our goal was to enhance agricultural efficiency by reducing resource use and improving crop production in a controlled and sustainable setting.
-                <br><br>
-                During my tenure, I achieved three pivotal milestones:
+                <br>
+    
                 <br><b>Expanded Resources:</b> Secured a trailer to create a controlled environment, providing increased space and resources. Gained lab access and equipment to analyze the nutritional quality of crops and correlate results with growing conditions, moving beyond qualitative observations.
                 <br><b>Team Growth:</b> Expanded the team and resources to support long-term success.
                 <br><b>Reorganized Structure:</b> Restructured the team into three specialized subteams, each with a lead, to address neglected areas and improve workload distribution.
-                <br>This leadership role allowed me to integrate engineering innovation, sustainability, and team management to advance agricultural technology. I have loved my experience with the team and am incredibly grateful for the experience. View our website here: https://ubcagroponics.com/
+                <br> <br>
+                This leadership role allowed me to integrate engineering innovation, sustainability, and team management to advance agricultural technology. I have loved my experience with the team and am incredibly grateful for the experience. View our website here: https://ubcagroponics.com/
                     
                 </p>
             </div>
@@ -556,34 +555,6 @@
     </div>
 </div>
 
-
-<!--
-    <div class = "section" id="skills">
-        <h2>Skills</h2>
-        <ul class="skills-list">
-            <li>JavaScript</li>
-            <li>Python</li>
-            <li>HTML & CSS</li>
-        </ul>
-    </div>
-
-    <div class = "section" id="contact">
-        <h2>Contact</h2>
-        <p>I'm always open to connect and discuss potential collaborations!</p>
-        <form>
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="message">Message</label>
-            <textarea id="message" name="message" required></textarea>
-
-            <button type="submit">Send Message</button>
-        </form>
-    </div>
--->
 
     <footer>
         <p>&copy; 2024 Isabella Clyde. All rights reserved.</p>
