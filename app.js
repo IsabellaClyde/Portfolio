@@ -53,6 +53,9 @@ rgbeLoader.load('path/to/hdri.hdr', (texture) => {
 let avatar;
 let mixer;
 
+// Disable scrolling while loading
+document.body.classList.add('no-scroll');
+
 // Use LoadingManager to track progress
 const loadingManager = new THREE.LoadingManager();
 
@@ -71,6 +74,7 @@ loadingManager.onLoad = () => {
     console.log('Loading complete');
     const loadingScreen = document.getElementById('loading-screen');
     loadingScreen.style.display = 'none'; // Hide the loading screen
+    document.body.classList.remove('no-scroll'); // Re-enable scrolling
 };
 
 // Attach LoadingManager to GLTFLoader
