@@ -161,6 +161,8 @@ const reRender3D = () => {
     if (mixer) mixer.update(0.02); // Update animations
 };
 reRender3D();
+
+
 let arrPositionModel = [
     {
         id: 'hero',
@@ -234,9 +236,13 @@ const modelMove = () => {
     }
 };
 
+// Helper function to check if the device is desktop
+function isDesktop() {
+    return window.innerWidth > 768; // Adjust breakpoint as needed
+}
 
 window.addEventListener('scroll', () => {
-    if (avatar) {
+    if (avatar && isDesktop) {
         modelMove();
     }
 })
