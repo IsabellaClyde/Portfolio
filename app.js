@@ -91,7 +91,7 @@ loader.load(
         if (isMobile) {
             // Position for mobile devices (center bottom)
             avatar.position.x = 0; // Center horizontally
-            avatar.position.y = 0; // Position closer to the bottom
+            avatar.position.y = -5; // Position closer to the bottom
             avatar.position.z = 0;
         } else {
             // Position for desktop (default)
