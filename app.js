@@ -93,11 +93,13 @@ loader.load(
             avatar.position.x = 0; // Center horizontally
             avatar.position.y = -5; // Position closer to the bottom
             avatar.position.z = 0;
+            avatar.scale.set(0.5, 0.5, 0.5);
         } else {
             // Position for desktop (default)
             avatar.position.x = 2.5;
             avatar.position.y = -2;
             avatar.position.z = 0;
+            avatar.scale.set(1, 1, 1);
         }
 
         // Traverse the avatar's nodes
