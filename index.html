@@ -14,8 +14,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #f44336;
-            color: white;
+            background-color: #ffffff;
+            color: #de27b9;
             text-align: center;
             padding-top: 20%;
             font-size: 20px;
@@ -350,6 +350,11 @@
         font-size: 0.9em;
     }
 
+    br {
+        line-height: 0.25; /* Adjust spacing between lines */
+        display: block;
+    }
+
 
     #container3D {
         position: fixed;
@@ -359,12 +364,18 @@
         pointer-events: none;
     }
 
-    br {
-        line-height: 0.25; /* Adjust spacing between lines */
-        display: block;
+    /* For mobile devices */
+    @media (max-width: 768px) {
+        #container3D {
+            position: fixed;
+            bottom: 20px; /* Position near the bottom of the screen */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Center the container */
+            width: 150px; /* Adjust size for mobile */
+            height: 150px; /* Keep it proportional */
+            pointer-events: none;
+        }
     }
-
-
 
 
     </style>
