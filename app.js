@@ -84,8 +84,21 @@ loader.load(
     function (gltf) {
         console.log('GLTF Loaded:', gltf);
         avatar = gltf.scene;
-        avatar.position.x = 2.5;
-        avatar.position.y= -2;
+        
+        // Detect if the device is mobile
+        const isMobile = window.innerWidth <= 768; // Adjust breakpoint as needed
+
+        if (isMobile) {
+            // Position for mobile devices (center bottom)
+            avatar.position.x = 0; // Center horizontally
+            avatar.position.y = -5; // Position closer to the bottom
+            avatar.position.z = 0;
+        } else {
+            // Position for desktop (default)
+            avatar.position.x = 2.5;
+            avatar.position.y = -2;
+            avatar.position.z = 0;
+        }
 
         // Traverse the avatar's nodes
         avatar.traverse((node) => {
