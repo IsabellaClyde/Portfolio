@@ -7,6 +7,25 @@
 
 <!-- CSS code -->
     <style>
+        #mobile-warning {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f44336;
+            color: white;
+            text-align: center;
+            padding-top: 20%;
+            font-size: 20px;
+            z-index: 1000;
+        }
+        /* Main Content Styling */
+        #main-content {
+            display: none; /* Hidden by default */
+        }
+        
     * {
         margin: 0;
         padding: 0;
@@ -55,7 +74,6 @@
     }
 
     /* Hero Section */
-    
     #hero {
         background: #fff;
         color: #fff;
@@ -347,6 +365,8 @@
     }
 
 
+
+
     </style>
 
 
@@ -368,7 +388,14 @@
         <div class="spinner"></div>
     </div>
 
+    <div id="mobile-warning">
+        This site is best viewed on a computer. Please switch to a desktop for the best experience.
+    </div>
+
     <!--Intro-->
+
+    
+<div id="main-content">
     <div class="section" id="hero">
         <element class="intro">
             <h1>Hello,</h1>
@@ -376,8 +403,7 @@
             <p>I'm an electrical engineering student passionate about sustainable and innovative solutions. <br> <b>I am still updating this website, both in content and design.</b></p>
             <a href="#projects" class="btn">View My Projects</a>
         </div>
-        
-    </div>
+    
 
 <!--Experience-->
 <div class= "section" id="projects">
@@ -554,6 +580,7 @@
 
     </div>
 </div>
+</div>
 
 
     <footer>
@@ -596,6 +623,22 @@
                 });
             });
         });        
+    </script>
+
+    <script>
+        // Function to detect if the user is on a mobile device
+        function isMobileDevice() {
+            return /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth <= 768;
+        }
+
+        // Show main content or mobile warning based on device
+        if (isMobileDevice()) {
+            // Show mobile warning
+            document.getElementById('mobile-warning').style.display = 'block';
+        } else {
+            // Show main content
+            document.getElementById('main-content').style.display = 'block';
+        }
     </script>
 
 </body>
