@@ -33,7 +33,7 @@ const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Ambient light
 scene.add(ambientLight);
 
 const pointLight = new THREE.PointLight(0xffffff, 1.5); // Point light for highlights
-pointLight.position.set(-4, 12, 0); // Adjust position
+pointLight.position.set(-4, 12, 3.5); // Adjust position
 pointLight.castShadow = true; // Enable shadows for point light
 pointLight.shadow.mapSize.width = 2048; // High shadow resolution
 pointLight.shadow.mapSize.height = 2048;
@@ -90,7 +90,7 @@ loader.load(
 
         if (isMobile) {
             // Position for mobile devices (center bottom)
-            avatar.position.x = 0; // Center horizontally
+            avatar.position.x = -3; // Center horizontally
             avatar.position.y = -5; // Position closer to the bottom
             avatar.position.z = 0;
             avatar.scale.set(0.5, 0.5, 0.5);
