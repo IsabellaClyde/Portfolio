@@ -90,7 +90,7 @@ loader.load(
 
         if (isMobile) {
             // Position for mobile devices (center bottom)
-            avatar.position.x = -3; // Center horizontally
+            avatar.position.x = -10; // Center horizontally
             avatar.position.y = -5; // Position closer to the bottom
             avatar.position.z = 0;
             avatar.scale.set(0.5, 0.5, 0.5);
